@@ -42,12 +42,15 @@ if st.button("Calculate Match Score"):
 
         resume_text = extract_text_from_pdf(resume_file)
 
-        score = compute_match_score(
-            resume_text,
-            jd_text
+        score = round(
+            compute_match_score(
+                resume_text,
+                jd_text
+            ),
+            2
         )
 
-    st.success(f"Match Score: {score}%")
+    st.success(f"Match Score: {score:.2f}%")
 
     # Interpretation
     if score >= 80:
@@ -63,6 +66,6 @@ if st.button("Calculate Match Score"):
     with st.expander("View Resume Text"):
         st.write(resume_text)
 
-    # Show JD
+    # Show Job Description
     with st.expander("View Job Description"):
         st.write(jd_text)
